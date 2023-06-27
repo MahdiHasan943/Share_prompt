@@ -12,7 +12,7 @@ const MyProfile = () => {
     const { data: session } = useSession();
   
     const [myPosts, setMyPosts] = useState([]);
-    
+
     useEffect(() => {
         const fetchPosts = async () => {
           const response = await fetch(`/api/users/${session?.user.id}/posts`);
@@ -24,20 +24,22 @@ const MyProfile = () => {
         if (session?.user.id) fetchPosts();
       }, [session?.user.id]);
 
-    const handleEdit = () => {
+    const handleEdit = (myPosts) => {
+
+        router.push(`/update-prompt?id=${myPosts._id}`)
       };
     
-      const handleDelete = async () => {
-        // const hasConfirmed = confirm(
-        //   "Are you sure you want to delete this prompt?"
-        //   );
+      const handleDelete = async (myPosts) => {
+        const hasConfirmed = confirm(
+          "Are you sure you want to delete this prompt?"
+          );
           }
 
   return (
     <Profile
     name='My'
     desc='Welcome to your personalized profile page. Share your exceptional prompts and inspire others with the power of your imagination'
-    data={[]}
+    data={myPosts}
     handleEdit={handleEdit}
     handleDelete={handleDelete}
   />
