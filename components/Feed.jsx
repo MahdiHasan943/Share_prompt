@@ -27,7 +27,10 @@ const Feed = () => {
   const [searchedResults, setSearchedResults] = useState([]);
 
   const [allPosts, setAllPosts] = useState([]);
- 
+  
+  allPosts.sort((a, b) => b.value - a.value);
+
+ console.log(allPosts);
  const fetchPosts = async () => {
     const response = await fetch("/api/prompt");
     const data = await response.json();
@@ -38,6 +41,7 @@ const Feed = () => {
   useEffect(() => {
     fetchPosts();
   }, []);
+
 
 
   const filterPrompts = (searchtext) => {
