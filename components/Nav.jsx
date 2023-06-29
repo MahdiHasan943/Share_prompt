@@ -8,9 +8,9 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
 
-    const { data: session } = useSession();
+  const { data: session } = useSession();
 
-    const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = useState(null);
     const [toggleDropdown, setToggleDropdown] = useState(false);
   
     useEffect(() => {
@@ -40,7 +40,7 @@ const Nav = () => {
               {
                   session?.user ? (
             <div className="flex items-center  gap-3 md:gap-5">
-               <Link  className='logo_text hover:underline  underline-offset-8' href={'/AllPost'}>AllPost </Link>
+               <Link  className='logo_text hover:underline  underline-offset-8' href={'/AllPost'}>Posts </Link>
                           <Link href='/Create-prompt' className='black_btn'>
                               Create Post
                           </Link>
@@ -61,8 +61,9 @@ const Nav = () => {
                   ): (
                           <>
                                {providers &&
-              Object.values(providers).map((provider) => (
+                  Object.values(providers).map((provider) => (
                 <button
+                
                   type='button'
                   key={provider.name}
                   onClick={() => {
@@ -95,7 +96,10 @@ const Nav = () => {
             />
 
             {toggleDropdown && (
-              <div className='dropdown'>
+              <div className='dropdown text-center mx-auto'>
+                <Link className=' ' href={'/AllPost'}>
+                  Posts </Link>
+
                 <Link
                   href='/profile'
                   className='dropdown_link'
